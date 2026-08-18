@@ -405,23 +405,31 @@ footer{ padding-top:clamp(3rem,6vw,5rem); }
    LOGO, CHARTS, RESULTS, BLOG
    ============================================================ */
 
-/* animated rank-bar logo */
-.logo{ display:inline-flex; flex:none; }
-.logo svg{ overflow:visible; }
-.logo .lb{ transform-box:fill-box; transform-origin:50% 100%; }
-.logo .lp{ transform-box:fill-box; transform-origin:50% 50%; }
-.js .logo .lb{ animation:rankUp .85s var(--ease) both; }
-.js .logo .lb1{ animation-delay:.05s }
-.js .logo .lb2{ animation-delay:.15s }
-.js .logo .lb3{ animation-delay:.25s }
-.js .logo .lp{ animation:popIn .5s var(--ease) .55s both; }
-@keyframes rankUp{ from{ transform:scaleY(.12); opacity:0 } to{ transform:scaleY(1); opacity:1 } }
-@keyframes popIn{ from{ transform:scale(0) } to{ transform:scale(1) } }
-.wordmark:hover .lb{ animation:rankUp .7s var(--ease) both; }
-.wordmark:hover .lb2{ animation-delay:.07s }
-.wordmark:hover .lb3{ animation-delay:.14s }
+/* logo: a citation bracket around the initial, set as type so it sits on the
+   same baseline as the name instead of floating beside it */
+.wordmark{ line-height:1; }
+.mark{
+  display:inline-flex; align-items:baseline; gap:.02em; flex:none;
+  font-family:var(--display); font-weight:800; letter-spacing:-.02em;
+  font-size:1.45em; line-height:1; translate:0 .06em;
+}
+.mark .rr{ color:var(--ink); font-weight:800; }
+.mark .bk{ color:var(--accent); font-style:normal; font-weight:700; will-change:transform; }
+.js .mark .bk-l{ animation:brL .55s var(--ease) both; }
+.js .mark .bk-r{ animation:brR .55s var(--ease) both; }
+.js .mark .rr{ animation:rIn .5s var(--ease) .12s both; }
+@keyframes brL{ from{ transform:translateX(.42em); opacity:0 } to{ transform:none; opacity:1 } }
+@keyframes brR{ from{ transform:translateX(-.42em); opacity:0 } to{ transform:none; opacity:1 } }
+@keyframes rIn{ from{ opacity:0; transform:translateY(.12em) } to{ opacity:1; transform:none } }
+.wordmark:hover .bk-l{ animation:brNudgeL .45s var(--ease); }
+.wordmark:hover .bk-r{ animation:brNudgeR .45s var(--ease); }
+@keyframes brNudgeL{ 50%{ transform:translateX(-.11em) } }
+@keyframes brNudgeR{ 50%{ transform:translateX(.11em) } }
+.wm-name{ display:inline-block; }
+.cta .mark .rr, footer .mark .rr{ color:inherit; }
 @media (prefers-reduced-motion:reduce){
-  .js .logo .lb,.js .logo .lp,.wordmark:hover .lb{ animation:none !important; opacity:1; transform:none; }
+  .js .mark .bk,.js .mark .rr,.wordmark:hover .bk-l,.wordmark:hover .bk-r{
+    animation:none !important; opacity:1; transform:none; }
 }
 
 /* hero results panel replaces the portrait */
