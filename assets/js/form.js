@@ -16,7 +16,7 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
     var key = form.querySelector('[name="access_key"]').value;
-    if (key === 'WEB3FORMS_ACCESS_KEY') {
+    if (key === 'WEB3FORMS_ACCESS_KEY' || !key) {
       show('err', 'The form is not connected yet. Add your Web3Forms access key to enable it.');
       return;
     }
