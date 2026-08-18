@@ -123,5 +123,24 @@
     });
   }
 
+  /* ---- chart line draws on enter: storytelling, the growth is the message ---- */
+  gsap.utils.toArray('.chart .spark').forEach(function (el) {
+    var len = el.getTotalLength ? el.getTotalLength() : 1400;
+    gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.to(el, {
+      strokeDashoffset: 0, duration: 1.8, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    });
+  });
+
+  /* ---- bars grow from the baseline ---- */
+  gsap.utils.toArray('.chart rect[rx="4"]').forEach(function (r, i) {
+    var h = +r.getAttribute('height'), y = +r.getAttribute('y');
+    gsap.fromTo(r, { attr: { height: 0, y: y + h } }, {
+      attr: { height: h, y: y }, duration: 1, ease: 'expo.out', delay: i * 0.08,
+      scrollTrigger: { trigger: r, start: 'top 92%', once: true }
+    });
+  });
+
   ScrollTrigger.refresh();
 })();
