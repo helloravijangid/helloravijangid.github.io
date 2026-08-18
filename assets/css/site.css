@@ -6,17 +6,18 @@
    ============================================================ */
 
 :root{
-  --paper:   #F5F5F3;
+  --paper:   #F5F5F5;
   --card:    #FFFFFF;
-  --tint:    #EBEBE7;
-  --ink:     #14141A;
+  --tint:    #EAEAEA;
+  --ink:     #111111;
   --dim:     #3E3E48;
   --muted:   #6B6B78;
-  --line:      rgba(20,20,26,.13);
-  --line-soft: rgba(20,20,26,.07);
-  --accent:      #C93A11;
-  --accent-deep: #A32D08;
-  --accent-wash: rgba(201,58,17,.08);
+  --line:      rgba(17,17,17,.14);
+  --line-soft: rgba(17,17,17,.07);
+  --brand:       #F4511E;
+  --accent:      #C7350A;
+  --accent-deep: #A82C07;
+  --accent-wash: rgba(244,81,30,.10);
 
   --pad: clamp(1.25rem, 5vw, 5.5rem);
   --max: 1500px;
@@ -406,27 +407,31 @@ footer{ padding-top:clamp(3rem,6vw,5rem); }
    LOGO, CHARTS, RESULTS, BLOG
    ============================================================ */
 
-/* logo: one glyph with a rank rule beneath it. A single character shares the
-   text baseline, which a box beside the name never can. */
-.mark{
-  position:relative; flex:none;
-  font-family:var(--display); font-weight:800; font-size:1.75em;
-  line-height:1; letter-spacing:0; color:var(--ink);
-  padding-bottom:.18em;
+/* brand lockup: traced RJ mark, divider, name over rule, tagline.
+   Letters inherit currentColor so one markup serves light and dark. */
+.wordmark{ align-items:center; gap:.6rem; }
+.rj{ width:auto; height:2.15em; flex:none; display:block; color:var(--ink); }
+.wm-text{
+  display:flex; flex-direction:column; gap:.16em;
+  padding-left:.6rem; border-left:1px solid var(--brand);
 }
-.mark::after{
-  content:""; position:absolute; left:0; right:0; bottom:.02em;
-  height:.1em; background:var(--accent); border-radius:99px;
-  transform-origin:0 50%;
+.wm-name{
+  font-family:var(--sans); font-weight:600; font-size:.82rem;
+  letter-spacing:.19em; text-transform:uppercase; line-height:1; color:var(--ink);
 }
-.js .mark::after{ animation:rankRule .7s var(--ease) .1s both; }
-@keyframes rankRule{ from{ transform:scaleX(0) } to{ transform:scaleX(1) } }
-.wordmark:hover .mark::after{ animation:rankRule .5s var(--ease); }
-.cta .mark{ color:var(--paper); }
-.cta .mark::after{ background:#FF7A4D; }
-@media (prefers-reduced-motion:reduce){
-  .js .mark::after,.wordmark:hover .mark::after{ animation:none !important; transform:none; }
+.wm-tag{
+  font-family:var(--sans); font-weight:500; font-size:.5rem;
+  letter-spacing:.17em; text-transform:uppercase; line-height:1; color:var(--muted);
+  padding-top:.28em; border-top:1px solid var(--brand);
 }
+.wm-tag i{ color:var(--brand); font-style:normal; }
+@media (max-width:600px){ .wm-tag{ display:none; } .wm-text{ gap:0; } }
+.js .rj{ animation:markIn .55s var(--ease) both; }
+@keyframes markIn{ from{ opacity:0; transform:translateY(.12em) } to{ opacity:1; transform:none } }
+.wordmark:hover .rj path:last-child{ transform-origin:60% 60%; animation:arrowPop .5s var(--ease); }
+@keyframes arrowPop{ 50%{ transform:translate(2%,-3%) } }
+footer .rj, .cta .rj{ color:var(--ink); }
+.cta .wm-name{ color:var(--paper); }
 
 /* hero results panel replaces the portrait */
 .hero-panel{ background:var(--card); border:1px solid var(--line);
