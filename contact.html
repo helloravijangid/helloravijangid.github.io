@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'self'; script-src 'self' https://web3forms.com https://hcaptcha.com https://*.hcaptcha.com 'sha256-5JWz2pFlxEjBn60lOlhminb3At6YloWzeus5DqPU7W8=' 'sha256-hPrARYgai3czmfMGIjxn/s/Km099w7UcRsp9OIPPPYE='; style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com; font-src 'self'; img-src 'self' data:; connect-src 'self' https://api.web3forms.com https://hcaptcha.com https://*.hcaptcha.com; frame-src https://hcaptcha.com https://*.hcaptcha.com; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book a Free Search Audit | Contact</title>
 <meta name="description" content="Book a free thirty minute audit. Tell me about your site and I will come back with three things worth fixing, whether or not we end up working together.">
@@ -136,6 +138,7 @@
             <div class="field"><label for="message">Anything useful to know <span class="req">*</span></label>
               <textarea id="message" name="message" required placeholder="Your stack, your market, and what is not working right now."></textarea></div>
             <div class="btn-row" style="margin-top:.5rem">
+              <div class="h-captcha" data-captcha="true"></div>
               <button class="btn" type="submit">Send enquiry <span class="arw">&rarr;</span></button>
             </div>
             <p class="form-note">I reply to every enquiry myself, usually within one working day.</p>
@@ -205,5 +208,6 @@
 <script src="/assets/js/vendor/lenis.min.js" defer></script>
 <script src="/assets/js/motion.js" defer></script>
 <script src="/assets/js/form.js" defer></script>
+<script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
