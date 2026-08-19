@@ -2,7 +2,7 @@
 User-agent: *
 Allow: /
 
-# AI answer engines — explicitly welcome
+# AI answer engines: explicitly welcome
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
